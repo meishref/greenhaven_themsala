@@ -1,0 +1,35 @@
+{% set sec = components.home_trust_badges %}
+<section class="trust-badges" id="trust-badges" aria-label="Trust Badges">
+  <div class="container">
+    <div class="trust-badges__grid">
+      {% if sec.badges | length > 0 %}
+        {% for badge in sec.badges %}
+        <div class="trust-badge reveal delay-{{ loop.index * 100 }}">
+          <div class="trust-badge__icon">{{ badge.icon | default('🌿') }}</div>
+          <div class="trust-badge__content">
+            <p class="trust-badge__title">{{ badge.title }}</p>
+            <p class="trust-badge__text">{{ badge.text }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        {# Default badges #}
+        {% set defaults = [
+          { icon: '🚚', title: 'trust.shipping' | t, text: 'trust.shipping_text' | t },
+          { icon: '🔄', title: 'trust.returns' | t, text: 'trust.returns_text' | t },
+          { icon: '🌿', title: 'trust.quality' | t, text: 'trust.quality_text' | t },
+          { icon: '💬', title: 'trust.support' | t, text: 'trust.support_text' | t }
+        ] %}
+        {% for badge in defaults %}
+        <div class="trust-badge reveal delay-{{ loop.index * 100 }}">
+          <div class="trust-badge__icon">{{ badge.icon }}</div>
+          <div class="trust-badge__content">
+            <p class="trust-badge__title">{{ badge.title }}</p>
+            <p class="trust-badge__text">{{ badge.text }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>

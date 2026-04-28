@@ -1,0 +1,106 @@
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__grid">
+
+      {# Brand column #}
+      <div class="footer__brand">
+        <a href="/" class="footer__brand-logo">
+          {% if store.logo %}
+          <img src="{{ store.logo }}" alt="{{ store.name }}" width="44" height="44" style="border-radius: var(--radius-md);" loading="lazy">
+          {% endif %}
+          <span class="footer__brand-name">{{ store.name | split(' ') | first }}<span style="color: var(--color-accent);">{{ store.name | split(' ') | slice(1) | join(' ') }}</span></span>
+        </a>
+        <p class="footer__brand-desc">{{ store.description | truncate(120) }}</p>
+        <div class="footer__social" aria-label="Social media links">
+          {% if settings.contact.instagram_url %}
+          <a href="{{ settings.contact.instagram_url }}" class="footer__social-link" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" fill="none" stroke="var(--color-primary-dark)" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="var(--color-primary-dark)" stroke-width="2"/></svg>
+          </a>
+          {% endif %}
+          {% if settings.contact.twitter_url %}
+          <a href="{{ settings.contact.twitter_url }}" class="footer__social-link" target="_blank" rel="noopener" aria-label="Twitter / X">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          {% endif %}
+          {% if settings.contact.snapchat_url %}
+          <a href="{{ settings.contact.snapchat_url }}" class="footer__social-link" target="_blank" rel="noopener" aria-label="Snapchat">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.065 2c.976 0 4.154.281 5.665 3.858.422 1.004.32 2.693.24 4.032l-.006.1c-.004.064-.007.125-.01.183.205.11.434.165.666.16.298 0 .613-.087.928-.258.135-.074.284-.11.431-.107.147.004.292.047.421.126.245.152.384.405.37.673-.017.353-.274.64-.694.791-.078.027-.164.054-.258.084-.48.151-1.14.357-1.302.769a.43.43 0 00-.027.2c.089.574.984 2.282 3.254 2.698.274.047.468.29.454.569C22.185 16.498 20.28 17 20.28 17c-.116.024-.214.102-.265.208-.05.106-.05.23.003.335.12.237.295.449.507.6.252.18.542.352.842.535.786.471 1.678 1.004 1.678 1.853 0 .624-.52.999-1.55 1.114-.276.03-.56.093-.843.154-.56.12-1.14.244-1.86.244-.362 0-.73-.03-1.098-.09-.54-.09-1.02-.312-1.478-.524-.557-.261-1.082-.508-1.72-.508s-1.162.247-1.72.508c-.457.212-.938.434-1.478.524-.369.06-.737.09-1.098.09-.72 0-1.3-.124-1.86-.244-.283-.061-.567-.124-.843-.154-1.03-.115-1.55-.49-1.55-1.114 0-.849.892-1.382 1.678-1.853.3-.183.59-.355.842-.535.211-.151.387-.363.507-.6.053-.105.053-.23.003-.335-.051-.106-.149-.184-.265-.208 0 0-1.905-.502-2.017-1.322-.014-.279.18-.522.454-.569 2.27-.416 3.165-2.124 3.254-2.698a.43.43 0 00-.027-.2c-.162-.412-.822-.618-1.302-.769-.094-.03-.18-.057-.258-.084C2.49 9.7 2.233 9.413 2.216 9.06c-.013-.268.126-.521.37-.673.13-.079.274-.122.422-.126a.784.784 0 01.431.107c.315.172.63.258.928.258.234.005.464-.05.666-.16L5.027 8.4c-.08-1.34-.182-3.028.24-4.032C6.777 2.281 9.956 2 12.066 2z"/></svg>
+          </a>
+          {% endif %}
+          {% if settings.contact.whatsapp_number %}
+          <a href="https://wa.me/{{ settings.contact.whatsapp_number }}" class="footer__social-link" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+
+      {# Quick links #}
+      <div>
+        <h3 class="footer__col-title">{{ 'القائمة السريعة' | t }}</h3>
+        <ul class="footer__links">
+          {% for category in categories | slice(0,5) %}
+          <li><a href="{{ category.url }}" class="footer__link">{{ category.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      {# Help links #}
+      <div>
+        <h3 class="footer__col-title">{{ 'المساعدة' | t }}</h3>
+        <ul class="footer__links">
+          <li><a href="{{ routes.faq }}" class="footer__link">الأسئلة الشائعة</a></li>
+          <li><a href="{{ routes.shipping_policy }}" class="footer__link">سياسة الشحن</a></li>
+          <li><a href="{{ routes.return_policy }}" class="footer__link">سياسة الإرجاع</a></li>
+          <li><a href="{{ routes.privacy_policy }}" class="footer__link">سياسة الخصوصية</a></li>
+          <li><a href="{{ routes.contact }}" class="footer__link">اتصل بنا</a></li>
+        </ul>
+      </div>
+
+      {# Contact info #}
+      <div>
+        <h3 class="footer__col-title">{{ 'تواصل معنا' | t }}</h3>
+        <ul class="footer__links">
+          {% if store.phone %}
+          <li>
+            <a href="tel:{{ store.phone }}" class="footer__link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.66A2 2 0 012.18 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-.52a2 2 0 012.11.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              {{ store.phone }}
+            </a>
+          </li>
+          {% endif %}
+          {% if store.email %}
+          <li>
+            <a href="mailto:{{ store.email }}" class="footer__link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              {{ store.email }}
+            </a>
+          </li>
+          {% endif %}
+          {% if store.address %}
+          <li class="footer__link" style="cursor: default;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            {{ store.address }}
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+
+    </div>
+
+    {# Payment Methods #}
+    {% if store.payment_methods %}
+    <div style="display:flex; align-items:center; gap: var(--space-4); margin-block-end: var(--space-6); flex-wrap: wrap;">
+      <span style="font-size: var(--text-sm); color: rgba(255,255,255,0.45);">طرق الدفع:</span>
+      {% for method in store.payment_methods %}
+      <img src="{{ method.icon }}" alt="{{ method.name }}" height="28" style="opacity: 0.6; filter: brightness(0) invert(1);" loading="lazy">
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="footer__bottom">
+      <p>© {{ 'now' | date('Y') }} {{ store.name }}. {{ 'footer.rights' | t }}.</p>
+      <p>{{ 'footer.powered_by' | t }}</p>
+    </div>
+  </div>
+</footer>

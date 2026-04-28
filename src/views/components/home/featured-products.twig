@@ -1,0 +1,27 @@
+{% set sec = components.home_featured %}
+<section class="section" id="featured-products" style="background: var(--color-bg);" aria-labelledby="featured-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-header__eyebrow">مختارات مميزة</div>
+      <h2 class="section-header__title" id="featured-title">{{ sec.title | default('منتجاتنا المميزة') }}</h2>
+      {% if sec.subtitle %}
+      <p class="section-header__subtitle">{{ sec.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="products-grid" id="featured-products-grid">
+      {% for product in products | slice(0, sec.products_count | default(8)) %}
+        {% include 'components/product/product-card' with { product: product } %}
+      {% endfor %}
+    </div>
+
+    {% if sec.view_all_text %}
+    <div style="text-align: center; margin-block-start: var(--space-10);" class="reveal">
+      <a href="/shop" class="btn btn--outline btn--lg">
+        {{ sec.view_all_text | default('عرض جميع المنتجات') }}
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="{{ store.dir == 'rtl' ? 'M19 12H5M12 5l-7 7 7 7' : 'M5 12h14M12 5l7 7-7 7' }}"/></svg>
+      </a>
+    </div>
+    {% endif %}
+  </div>
+</section>

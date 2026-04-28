@@ -1,0 +1,39 @@
+{# Quick View content — loaded into the <dialog> via JS #}
+<div class="quick-view__inner" id="quick-view-content">
+  {# Left: image #}
+  <div style="background: var(--color-surface-2); display:flex; align-items:center; justify-content:center; padding: var(--space-8);">
+    <img src="" alt="" id="qv-image" style="width:100%; max-width:350px; border-radius: var(--radius-xl); object-fit:cover;" loading="lazy">
+  </div>
+
+  {# Right: info #}
+  <div style="padding: var(--space-8) var(--space-8) var(--space-8); overflow-y:auto; display:flex; flex-direction:column; gap: var(--space-4);">
+    <button class="quick-view__close" id="quick-view-close" aria-label="{{ 'general.close' | t }}">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+
+    <div id="qv-badges" style="display:flex;gap:var(--space-2);flex-wrap:wrap;"></div>
+    <h2 id="qv-name" style="font-size: var(--text-2xl); font-weight: var(--weight-bold);"></h2>
+    <div id="qv-rating" class="stars"></div>
+    <div id="qv-price" style="font-size: var(--text-3xl); font-weight: var(--weight-extrabold); color: var(--color-primary);"></div>
+
+    <div id="qv-scarcity" class="product-scarcity" style="display:none;">
+      <span class="product-scarcity__dot"></span>
+      <p class="product-scarcity__text" id="qv-scarcity-text"></p>
+    </div>
+
+    <div id="qv-options"></div>
+
+    <div style="display:flex; gap: var(--space-3); flex-wrap:wrap; margin-block-start: var(--space-2);">
+      <button class="btn btn--primary btn--lg"
+              style="flex:1;"
+              id="qv-add-to-cart"
+              aria-label="{{ 'product.add_to_cart' | t }}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        {{ 'product.add_to_cart' | t }}
+      </button>
+      <a id="qv-view-more" href="#" class="btn btn--outline btn--lg" style="flex:1;">
+        عرض التفاصيل
+      </a>
+    </div>
+  </div>
+</div>

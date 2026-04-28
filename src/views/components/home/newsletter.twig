@@ -1,0 +1,32 @@
+{% set sec = components.home_newsletter %}
+<section class="section newsletter" id="newsletter"
+         {% if sec.bg_image %}style="background-image: url('{{ sec.bg_image }}'); background-size: cover; background-position: center;"{% endif %}
+         aria-labelledby="newsletter-title">
+  <div class="container">
+    <div class="newsletter__inner">
+      <div class="newsletter__icon reveal" aria-hidden="true">📧</div>
+      <h2 class="newsletter__title reveal delay-100" id="newsletter-title">{{ sec.title | default('انضم لعائلة Green Haven') }}</h2>
+      <p class="newsletter__subtitle reveal delay-200">{{ sec.subtitle | default('اشترك واحصل على عروض حصرية') }}</p>
+      <form class="newsletter__form reveal delay-300"
+            id="newsletter-form"
+            method="post"
+            action="{{ routes.newsletter_subscribe }}"
+            aria-label="Newsletter subscription">
+        <input type="email"
+               name="email"
+               class="form-input"
+               placeholder="{{ sec.placeholder_text | default('newsletter.email_placeholder' | t) }}"
+               required
+               aria-label="{{ 'newsletter.email_placeholder' | t }}">
+        <button type="submit" class="btn btn--primary" id="newsletter-submit">
+          {{ sec.button_text | default('newsletter.subscribe' | t) }}
+        </button>
+        <input type="hidden" name="_method" value="subscribe">
+        {{ csrf_field() }}
+      </form>
+      <p class="newsletter__privacy reveal delay-400">
+        🔒 لن نشارك بريدك مع أي طرف ثالث. يمكنك إلغاء الاشتراك في أي وقت.
+      </p>
+    </div>
+  </div>
+</section>

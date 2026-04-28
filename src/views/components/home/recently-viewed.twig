@@ -1,0 +1,13 @@
+{% set sec = components.home_recently_viewed %}
+<section class="section recently-viewed" id="recently-viewed"
+         style="display:none;"
+         aria-labelledby="recently-viewed-title">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-header__title" id="recently-viewed-title">{{ sec.title | default('شاهدتها مؤخرًا') }}</h2>
+    </div>
+    <div class="recently-viewed__slider" id="recently-viewed-slider" role="list" aria-label="Recently viewed products">
+      {# Populated by engagement.js from localStorage #}
+    </div>
+  </div>
+</section>

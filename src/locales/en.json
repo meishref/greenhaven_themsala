@@ -1,0 +1,86 @@
+{
+    "general": {
+        "currency": "SAR",
+        "loading": "Loading...",
+        "error": "An error occurred, please try again",
+        "close": "Close",
+        "view_all": "View All",
+        "added_to_cart": "Added to cart",
+        "added_to_wishlist": "Added to wishlist",
+        "removed_from_wishlist": "Removed from wishlist",
+        "out_of_stock": "Out of Stock",
+        "in_stock": "In Stock",
+        "sku": "SKU",
+        "share": "Share",
+        "copied": "Copied!"
+    },
+    "header": {
+        "search_placeholder": "Search plants, seeds, tools...",
+        "cart": "Cart",
+        "wishlist": "Wishlist",
+        "menu": "Menu",
+        "account": "My Account"
+    },
+    "hero": {
+        "scroll_down": "Scroll Down"
+    },
+    "product": {
+        "add_to_cart": "Add to Cart",
+        "buy_now": "Buy Now",
+        "quick_view": "Quick View",
+        "wishlist_add": "Add to Wishlist",
+        "wishlist_remove": "Remove from Wishlist",
+        "discount_badge": "Sale",
+        "new_badge": "New",
+        "bestseller_badge": "Best Seller",
+        "scarcity": "Only {{count}} left!",
+        "free_shipping": "Free Shipping",
+        "share_product": "Share Product",
+        "description": "Description",
+        "reviews": "Reviews",
+        "related_products": "Related Products",
+        "quantity": "Quantity",
+        "select_option": "Select",
+        "options": "Options"
+    },
+    "cart": {
+        "title": "Shopping Cart",
+        "empty": "Your cart is empty",
+        "empty_subtitle": "Start shopping and add great products",
+        "subtotal": "Subtotal",
+        "total": "Total",
+        "checkout": "Checkout",
+        "continue_shopping": "Continue Shopping",
+        "remove": "Remove",
+        "quantity": "Quantity",
+        "free_shipping_msg": "Add {{amount}} for free shipping!",
+        "free_shipping_achieved": "🎉 You've got free shipping!"
+    },
+    "newsletter": {
+        "email_placeholder": "Enter your email address",
+        "subscribe": "Subscribe",
+        "success": "Thank you! You're subscribed 🌿",
+        "error": "Please enter a valid email address"
+    },
+    "footer": {
+        "rights": "All rights reserved",
+        "powered_by": "Powered by Salla"
+    },
+    "trust": {
+        "shipping": "Fast Shipping",
+        "shipping_text": "Delivery across Saudi Arabia",
+        "returns": "Free Returns",
+        "returns_text": "Within 7 days",
+        "quality": "Organic Products",
+        "quality_text": "Certified high quality",
+        "support": "24/7 Support",
+        "support_text": "We're here to help"
+    },
+    "accessibility": {
+        "skip_to_content": "Skip to content",
+        "open_menu": "Open menu",
+        "close_menu": "Close menu",
+        "back_to_top": "Back to top",
+        "whatsapp": "Contact via WhatsApp"
+    }
+}

@@ -1,0 +1,54 @@
+{% set sec = components.home_categories %}
+<section class="section categories" id="categories" aria-labelledby="categories-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-header__eyebrow">{{ sec.title | default('الأقسام') }}</div>
+      <h2 class="section-header__title" id="categories-title">{{ sec.title | default('تصفح الأقسام') }}</h2>
+      {% if sec.subtitle %}
+      <p class="section-header__subtitle">{{ sec.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    {% if sec.categories | length > 0 %}
+    <div class="categories-grid">
+      {% for cat in sec.categories %}
+      <a href="{{ cat.url | default('#') }}" class="category-card reveal delay-{{ loop.index * 100 }}">
+        {% if cat.image %}
+        <img src="{{ cat.image }}" alt="{{ cat.name }}" class="category-card__img" loading="lazy">
+        {% else %}
+        <div class="category-card__img" style="background: linear-gradient(135deg, var(--color-secondary-light), var(--color-primary-light)); display:flex; align-items:center; justify-content:center; font-size: 3rem;">🌿</div>
+        {% endif %}
+        <div class="category-card__info">
+          {% if cat.badge %}
+          <span class="badge badge--accent category-card__badge">{{ cat.badge }}</span>
+          {% endif %}
+          <span class="category-card__name">{{ cat.name }}</span>
+          <span class="category-card__arrow">
+            اكتشف المزيد
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="{{ store.dir == 'rtl' ? 'M19 12H5' : 'M5 12h14' }}"/><path d="{{ store.dir == 'rtl' ? 'M12 5l-7 7 7 7' : 'M12 5l7 7-7 7' }}"/></svg>
+          </span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    {# Fallback: pull from Salla store categories #}
+    <div class="categories-grid">
+      {% for category in categories | slice(0, 6) %}
+      <a href="{{ category.url }}" class="category-card reveal delay-{{ loop.index * 100 }}">
+        {% if category.image %}
+        <img src="{{ category.image }}" alt="{{ category.name }}" class="category-card__img" loading="lazy">
+        {% endif %}
+        <div class="category-card__info">
+          <span class="category-card__name">{{ category.name }}</span>
+          <span class="category-card__arrow">
+            اكتشف المزيد
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="{{ store.dir == 'rtl' ? 'M19 12H5' : 'M5 12h14' }}"/><path d="{{ store.dir == 'rtl' ? 'M12 5l-7 7 7 7' : 'M12 5l7 7-7 7' }}"/></svg>
+          </span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>

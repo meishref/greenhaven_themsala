@@ -1,0 +1,33 @@
+{% set sec = components.home_brands %}
+<section class="brands" id="brands" aria-label="{{ sec.title | default('شركاؤنا') }}">
+  {% if sec.title %}
+  <div class="container" style="text-align:center; margin-block-end: var(--space-8);">
+    <p style="font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-muted); font-weight: var(--weight-semibold);">{{ sec.title }}</p>
+  </div>
+  {% endif %}
+
+  <div class="brands-track" aria-hidden="true">
+    {# Duplicate for seamless loop #}
+    {% set brand_list = sec.brands | default([]) %}
+    {% for pass in 1..2 %}
+    <div class="brands-track__inner">
+      {% if brand_list | length > 0 %}
+        {% for brand in brand_list %}
+        <a href="{{ brand.url | default('#') }}" class="brand-item" {% if brand.url %}target="_blank" rel="noopener"{% endif %}>
+          {% if brand.logo %}
+          <img src="{{ brand.logo }}" alt="{{ brand.name }}" loading="lazy">
+          {% else %}
+          <span class="brand-item__name">{{ brand.name }}</span>
+          {% endif %}
+        </a>
+        {% endfor %}
+      {% else %}
+        {# Fallback placeholder brands #}
+        {% for i in 1..6 %}
+        <div class="brand-item" style="width:120px; height:44px; background: var(--color-border); border-radius: var(--radius-md);"></div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</section>

@@ -1,0 +1,64 @@
+{% extends 'layouts.master' %}
+{% block title %}{{ category.name }} | {{ store.name }}{% endblock %}
+{% block content %}
+<div class="catalog-page">
+  <div class="container">
+    <div class="catalog-page__layout">
+      {# Sidebar Filters #}
+      <aside class="catalog-sidebar" aria-label="Product filters">
+        <p class="catalog-sidebar__title">تصفية المنتجات</p>
+        {% for filter in filters %}
+        <div class="catalog-filter {% if not filter.is_open %}is-collapsed{% endif %}">
+          <div class="catalog-filter__header" data-toggle="filter">
+            {{ filter.label }}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="catalog-filter__body">
+            {% for option in filter.options %}
+            <label style="display:flex;align-items:center;gap:var(--space-2);padding-block:var(--space-2);cursor:pointer;">
+              <input type="{{ filter.type }}" name="{{ filter.id }}" value="{{ option.value }}"
+                     {% if option.is_active %}checked{% endif %}
+                     style="accent-color: var(--color-primary);">
+              {{ option.label }}
+              <span style="margin-inline-start:auto;font-size:var(--text-xs);color:var(--color-text-muted);">({{ option.count }})</span>
+            </label>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </aside>
+
+      {# Products Grid #}
+      <div>
+        <div class="catalog-toolbar">
+          <p class="catalog-toolbar__count">{{ pagination.total }} منتج</p>
+          <select class="catalog-sort" id="sort-select" aria-label="Sort products">
+            <option value="default">ترتيب افتراضي</option>
+            <option value="price_asc">السعر: الأقل أولاً</option>
+            <option value="price_desc">السعر: الأعلى أولاً</option>
+            <option value="newest">الأحدث</option>
+            <option value="best_selling">الأكثر مبيعاً</option>
+          </select>
+        </div>
+        <div class="products-grid" role="list" aria-label="Products in {{ category.name }}">
+          {% for product in products %}
+            {% include 'components/product/product-card' with { product: product } %}
+          {% endfor %}
+        </div>
+        {# Pagination #}
+        {% if pagination.total_pages > 1 %}
+        <nav aria-label="Pagination" style="display:flex;justify-content:center;gap:var(--space-2);margin-block-start:var(--space-12);">
+          {% if pagination.prev_page %}
+          <a href="{{ pagination.prev_page }}" class="btn btn--outline btn--sm">السابق</a>
+          {% endif %}
+          <span style="display:flex;align-items:center;padding-inline:var(--space-4);font-size:var(--text-sm);">{{ pagination.current_page }} / {{ pagination.total_pages }}</span>
+          {% if pagination.next_page %}
+          <a href="{{ pagination.next_page }}" class="btn btn--primary btn--sm">التالي</a>
+          {% endif %}
+        </nav>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

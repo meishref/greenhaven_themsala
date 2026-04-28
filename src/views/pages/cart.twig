@@ -1,0 +1,53 @@
+{% extends 'layouts.master' %}
+{% block title %}{{ 'cart.title' | t }} | {{ store.name }}{% endblock %}
+{% block content %}
+<div class="catalog-page">
+  <div class="container">
+    <h1 style="font-size:var(--text-3xl);font-weight:var(--weight-bold);margin-block-end:var(--space-8);">{{ 'cart.title' | t }}</h1>
+    {% if cart.count > 0 %}
+    <div style="display:grid;grid-template-columns:1fr 360px;gap:var(--space-8);align-items:flex-start;">
+      <div>
+        {% for item in cart.items %}
+        <div class="cart-item" data-item-id="{{ item.id }}" style="margin-block-end:var(--space-4);">
+          <img src="{{ item.product.thumbnail }}" alt="{{ item.product.name }}" class="cart-item__img" loading="lazy">
+          <div class="cart-item__info">
+            <a href="{{ item.product.url }}" class="cart-item__name">{{ item.product.name }}</a>
+            {% if item.options %}<p class="cart-item__variant">{% for o in item.options %}{{ o.name }}: {{ o.value }}{% if not loop.last %} · {% endif %}{% endfor %}</p>{% endif %}
+            <div class="cart-item__footer">
+              <span class="cart-item__price">{{ item.price | money }}</span>
+              <div class="qty-stepper">
+                <button class="qty-stepper__btn" data-action="decrease">−</button>
+                <input class="qty-stepper__value" type="number" value="{{ item.quantity }}" min="1" max="{{ item.product.quantity }}" data-item-id="{{ item.id }}">
+                <button class="qty-stepper__btn" data-action="increase">+</button>
+              </div>
+              <button class="cart-item__remove" data-action="remove" data-item-id="{{ item.id }}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div style="background:var(--color-surface);border-radius:var(--radius-xl);padding:var(--space-6);border:1px solid var(--color-border-light);position:sticky;top:calc(var(--header-height) + var(--space-5));">
+        <h2 style="font-size:var(--text-xl);font-weight:var(--weight-bold);margin-block-end:var(--space-5);">ملخص الطلب</h2>
+        <div style="display:flex;justify-content:space-between;margin-block-end:var(--space-3);font-size:var(--text-sm);color:var(--color-text-muted);">
+          <span>{{ 'cart.subtotal' | t }}</span><span>{{ cart.subtotal | money }}</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding-block:var(--space-4);border-block:1px solid var(--color-border-light);font-size:var(--text-xl);font-weight:var(--weight-bold);margin-block:var(--space-3);">
+          <span>{{ 'cart.total' | t }}</span><span style="color:var(--color-primary);">{{ cart.total | money }}</span>
+        </div>
+        <a href="{{ routes.checkout }}" class="btn btn--primary btn--lg" style="width:100%;justify-content:center;">{{ 'cart.checkout' | t }}</a>
+        <a href="/shop" class="btn btn--ghost" style="width:100%;justify-content:center;margin-block-start:var(--space-3);">{{ 'cart.continue_shopping' | t }}</a>
+      </div>
+    </div>
+    {% else %}
+    <div style="text-align:center;padding-block:var(--space-24);">
+      <div style="font-size:5rem;margin-block-end:var(--space-6);">🛒</div>
+      <h2>{{ 'cart.empty' | t }}</h2>
+      <p style="color:var(--color-text-muted);margin-block:var(--space-3);">{{ 'cart.empty_subtitle' | t }}</p>
+      <a href="/shop" class="btn btn--primary btn--lg" style="margin-block-start:var(--space-6);">{{ 'cart.continue_shopping' | t }}</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

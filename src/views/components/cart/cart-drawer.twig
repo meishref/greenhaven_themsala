@@ -1,0 +1,91 @@
+<aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title">
+  <div class="cart-drawer__header">
+    <h2 class="cart-drawer__title" id="cart-drawer-title">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      {{ 'cart.title' | t }}
+      <span class="cart-drawer__count" id="cart-drawer-count" aria-live="polite">{{ cart.count | default(0) }}</span>
+    </h2>
+    <button class="quick-view__close" id="cart-drawer-close" aria-label="{{ 'general.close' | t }}">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  {# Free shipping progress bar #}
+  <div class="cart-shipping-bar" id="cart-shipping-bar" aria-label="Free shipping progress">
+    <p class="cart-shipping-bar__text" id="cart-shipping-text">
+      {{ 'cart.free_shipping_msg' | t | replace({'{{amount}}': '200 ' ~ store.currency}) }}
+    </p>
+    <div class="cart-shipping-bar__track" role="progressbar" aria-valuemin="0" aria-valuemax="200" aria-valuenow="0">
+      <div class="cart-shipping-bar__fill" id="cart-shipping-fill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <div class="cart-drawer__body" id="cart-drawer-body">
+    {# Empty state #}
+    <div class="cart-drawer__empty" id="cart-empty-state" {% if cart.count > 0 %}style="display:none"{% endif %}>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <strong>{{ 'cart.empty' | t }}</strong>
+      <p>{{ 'cart.empty_subtitle' | t }}</p>
+      <a href="/shop" class="btn btn--primary" id="cart-continue-btn">{{ 'cart.continue_shopping' | t }}</a>
+    </div>
+
+    {# Cart items container #}
+    <div id="cart-items-list" {% if cart.count == 0 %}style="display:none"{% endif %}>
+      {% for item in cart.items %}
+      <div class="cart-item" data-item-id="{{ item.id }}" data-product-id="{{ item.product_id }}">
+        <a href="{{ item.product.url }}" aria-label="{{ item.product.name }}">
+          <img src="{{ item.product.thumbnail }}" alt="{{ item.product.name }}"
+               class="cart-item__img" loading="lazy" width="80" height="80">
+        </a>
+        <div class="cart-item__info">
+          <a href="{{ item.product.url }}" class="cart-item__name">{{ item.product.name }}</a>
+          {% if item.options | length > 0 %}
+          <p class="cart-item__variant">
+            {% for option in item.options %}{{ option.name }}: {{ option.value }}{% if not loop.last %}, {% endif %}{% endfor %}
+          </p>
+          {% endif %}
+          <div class="cart-item__footer">
+            <span class="cart-item__price">{{ item.price | money }}</span>
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button class="qty-stepper__btn" data-action="decrease" aria-label="Decrease quantity">−</button>
+              <input class="qty-stepper__value"
+                     type="number"
+                     value="{{ item.quantity }}"
+                     min="1"
+                     max="{{ item.product.quantity }}"
+                     aria-label="Quantity for {{ item.product.name }}"
+                     data-item-id="{{ item.id }}">
+              <button class="qty-stepper__btn" data-action="increase" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="cart-item__remove"
+                    data-action="remove"
+                    data-item-id="{{ item.id }}"
+                    aria-label="{{ 'cart.remove' | t }}: {{ item.product.name }}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  {# Footer #}
+  <div class="cart-drawer__footer" id="cart-drawer-footer" {% if cart.count == 0 %}style="display:none"{% endif %}>
+    <div class="cart-drawer__subtotal">
+      <span>{{ 'cart.subtotal' | t }}</span>
+      <span id="cart-subtotal-amount">{{ cart.subtotal | money }}</span>
+    </div>
+    <div class="cart-drawer__total">
+      <span>{{ 'cart.total' | t }}</span>
+      <span class="cart-drawer__total-amount" id="cart-total-amount">{{ cart.total | money }}</span>
+    </div>
+    <a href="{{ routes.checkout }}" class="btn btn--primary btn--lg" style="width:100%; justify-content:center;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      {{ 'cart.checkout' | t }}
+    </a>
+    <button class="btn btn--ghost" style="width:100%; justify-content:center;" id="cart-continue-btn2">
+      {{ 'cart.continue_shopping' | t }}
+    </button>
+  </div>
+</aside>

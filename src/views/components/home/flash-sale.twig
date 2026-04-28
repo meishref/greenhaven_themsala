@@ -1,0 +1,51 @@
+{% set sec = components.home_flash_sale %}
+<section class="section flash-sale" id="flash-sale"
+         {% if sec.bg_image %}style="background-image: url('{{ sec.bg_image }}'); background-size: cover; background-position: center;"{% endif %}
+         aria-labelledby="flash-sale-title">
+  <div class="container" style="position: relative;">
+    <div class="flash-sale__header">
+      <div class="flash-sale__title-group reveal">
+        <div class="flash-sale__eyebrow">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          عروض حصرية
+        </div>
+        <h2 class="flash-sale__title" id="flash-sale-title">{{ sec.title | default('تخفيضات محدودة الوقت ⚡') }}</h2>
+        {% if sec.subtitle %}
+        <p style="color: rgba(255,255,255,0.7); font-size: var(--text-base);">{{ sec.subtitle }}</p>
+        {% endif %}
+      </div>
+
+      {# Countdown Timer #}
+      {% if sec.end_date %}
+      <div class="countdown reveal" id="flash-countdown" data-end="{{ sec.end_date }}" aria-label="Countdown timer">
+        <div class="countdown__block">
+          <span class="countdown__num" id="cd-days">00</span>
+          <span class="countdown__label">يوم</span>
+        </div>
+        <span class="countdown__sep" aria-hidden="true">:</span>
+        <div class="countdown__block">
+          <span class="countdown__num" id="cd-hours">00</span>
+          <span class="countdown__label">ساعة</span>
+        </div>
+        <span class="countdown__sep" aria-hidden="true">:</span>
+        <div class="countdown__block">
+          <span class="countdown__num" id="cd-mins">00</span>
+          <span class="countdown__label">دقيقة</span>
+        </div>
+        <span class="countdown__sep" aria-hidden="true">:</span>
+        <div class="countdown__block">
+          <span class="countdown__num" id="cd-secs">00</span>
+          <span class="countdown__label">ثانية</span>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    {# Sale products #}
+    <div class="products-grid" style="--card-bg: rgba(255,255,255,0.95);">
+      {% for product in sale_products | default(products | filter(p => p.discount > 0)) | slice(0, sec.products_count | default(4)) %}
+        {% include 'components/product/product-card' with { product: product, force_badge: sec.badge_text } %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

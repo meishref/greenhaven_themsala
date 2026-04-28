@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="{{ store.lang }}" dir="{{ store.dir }}" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  {# SEO #}
+  <title>{% block title %}{{ page.title }} | {{ store.name }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{{ page.description | default(store.description) }}{% endblock %}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{{ page.url }}">
+
+  {# Open Graph #}
+  <meta property="og:title" content="{% block og_title %}{{ page.title }} | {{ store.name }}{% endblock %}">
+  <meta property="og:description" content="{{ page.description | default(store.description) }}">
+  <meta property="og:image" content="{% block og_image %}{{ page.image | default(store.logo) }}{% endblock %}">
+  <meta property="og:url" content="{{ page.url }}">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  {# Favicon #}
+  <link rel="icon" type="image/png" href="{{ store.favicon | default(store.logo) }}">
+
+  {# Google Fonts #}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  {# Theme CSS — order matters #}
+  <link rel="stylesheet" href="{{ 'css/variables.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'css/animations.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'css/base.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'css/layout.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'css/components.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'css/home.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'css/product.css' | asset_url }}">
+
+  {# Merchant color overrides from twilight.json #}
+  {% if settings.color_primary %}
+  <style>
+    :root {
+      --color-primary: {{ settings.color_primary }};
+      --color-primary-rgb: {{ settings.color_primary | hex_to_rgb }};
+    }
+  </style>
+  {% endif %}
+  {% if settings.color_secondary %}
+  <style>:root { --color-secondary: {{ settings.color_secondary }}; }</style>
+  {% endif %}
+  {% if settings.color_accent %}
+  <style>:root { --color-accent: {{ settings.color_accent }}; }</style>
+  {% endif %}
+  {% if settings.color_bg %}
+  <style>:root { --color-bg: {{ settings.color_bg }}; }</style>
+  {% endif %}
+
+  {% block head %}{% endblock %}
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+
+  {# Accessibility skip link #}
+  <a class="skip-link" href="#main-content">{{ 'accessibility.skip_to_content' | t }}</a>
+
+  {# Global overlay (for drawers / mobile menu) #}
+  <div class="overlay" id="global-overlay" aria-hidden="true"></div>
+
+  {# Toast container #}
+  <div class="toast-container" id="toast-container" role="region" aria-live="polite" aria-label="Notifications"></div>
+
+  {# Announcement Bar #}
+  {% if settings.announcement_bar_enabled and settings.announcement_text %}
+  <div class="announcement-bar" role="banner">
+    <div class="container">
+      {{ settings.announcement_text }}
+    </div>
+  </div>
+  {% endif %}
+
+  {# Header #}
+  {% include 'components/header/header' %}
+
+  {# Cart Drawer #}
+  {% include 'components/cart/cart-drawer' %}
+
+  {# Mobile Menu #}
+  <nav class="mobile-menu" id="mobile-menu" aria-label="{{ 'header.menu' | t }}" aria-hidden="true">
+    <div class="mobile-menu__header">
+      <a href="/" class="header-logo" aria-label="{{ store.name }}">
+        {% if store.logo %}
+          <img src="{{ store.logo }}" alt="{{ store.name }}" class="header-logo__img" width="44" height="44">
+        {% endif %}
+        <span class="header-logo__text">{{ store.name | split(' ') | first }}<span>{{ store.name | split(' ') | slice(1) | join(' ') }}</span></span>
+      </a>
+      <button class="header-action" id="mobile-menu-close" aria-label="{{ 'accessibility.close_menu' | t }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu__nav">
+      {% for category in categories %}
+      <a href="{{ category.url }}" class="mobile-menu__link">
+        {{ category.name }}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </a>
+      {% endfor %}
+    </div>
+    <div style="padding: var(--space-5) var(--space-6); border-block-start: 1px solid var(--color-border-light);">
+      {% if settings.show_search %}
+      <div class="header-search" style="max-width: 100%; margin-block-end: var(--space-4);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="search" placeholder="{{ 'header.search_placeholder' | t }}" id="mobile-search-input" aria-label="{{ 'header.search_placeholder' | t }}">
+      </div>
+      {% endif %}
+      {% if settings.contact.whatsapp_number and components.engagement_settings.show_whatsapp %}
+      <a href="https://wa.me/{{ settings.contact.whatsapp_number }}" class="btn btn--primary" style="width:100%;" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        {{ 'accessibility.whatsapp' | t }}
+      </a>
+      {% endif %}
+    </div>
+  </nav>
+
+  {# Page Content #}
+  <main id="main-content" tabindex="-1">
+    {% block content %}{% endblock %}
+  </main>
+
+  {# Footer #}
+  {% include 'components/footer/footer' %}
+
+  {# Engagement Widgets #}
+  {% include 'components/home/engagement' %}
+
+  {# Quick View Modal #}
+  <dialog class="quick-view" id="quick-view-modal" aria-modal="true" aria-label="Quick View">
+    {% include 'components/product/quick-view' %}
+  </dialog>
+
+  {# Newsletter Popup #}
+  {% if components.home_newsletter.enabled and components.engagement_settings.show_newsletter_popup %}
+  <dialog class="newsletter-popup" id="newsletter-popup" aria-modal="true">
+    <div class="newsletter-popup__inner glass-card" style="padding: var(--space-8); max-width: 480px; width: 90vw; text-align: center;">
+      <button class="quick-view__close" id="newsletter-popup-close" aria-label="{{ 'general.close' | t }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div style="font-size: 3rem; margin-block-end: var(--space-4);">🌿</div>
+      <h2 style="font-size: var(--text-2xl); margin-block-end: var(--space-3);">{{ components.home_newsletter.title }}</h2>
+      <p style="color: var(--color-text-muted); margin-block-end: var(--space-6);">{{ components.home_newsletter.subtitle }}</p>
+      <form class="newsletter__form" id="popup-newsletter-form" style="max-width: 100%;">
+        <input type="email" class="form-input" placeholder="{{ components.home_newsletter.placeholder_text }}" required style="border-radius: var(--radius-full); padding-inline: var(--space-5);">
+        <button type="submit" class="btn btn--primary">{{ components.home_newsletter.button_text }}</button>
+      </form>
+    </div>
+  </dialog>
+  {% endif %}
+
+  {# Exit Intent Popup #}
+  {% if components.engagement_settings.show_exit_intent %}
+  <dialog class="exit-intent-popup" id="exit-intent-popup" aria-modal="true">
+    <div class="newsletter-popup__inner glass-card" style="padding: var(--space-8); max-width: 420px; width: 90vw; text-align: center;">
+      <button class="quick-view__close" id="exit-popup-close" aria-label="{{ 'general.close' | t }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div style="font-size: 3rem; margin-block-end: var(--space-4);">🎁</div>
+      <h2 style="font-size: var(--text-xl); margin-block-end: var(--space-3);">{{ components.engagement_settings.exit_intent_title }}</h2>
+      <p style="color: var(--color-text-muted); margin-block-end: var(--space-6);">{{ components.engagement_settings.exit_intent_text }}</p>
+      <a href="/shop" class="btn btn--primary btn--lg" style="width:100%;">{{ 'product.add_to_cart' | t }}</a>
+    </div>
+  </dialog>
+  {% endif %}
+
+  {# JavaScript — load order important #}
+  <script src="{{ 'js/theme.js' | asset_url }}" defer></script>
+  <script src="{{ 'js/header.js' | asset_url }}" defer></script>
+  <script src="{{ 'js/cart.js' | asset_url }}" defer></script>
+  <script src="{{ 'js/product.js' | asset_url }}" defer></script>
+  <script src="{{ 'js/countdown.js' | asset_url }}" defer></script>
+  <script src="{{ 'js/engagement.js' | asset_url }}" defer></script>
+
+  {# Pass theme data to JS #}
+  <script>
+    window.GreenHaven = {
+      lang: '{{ store.lang }}',
+      dir: '{{ store.dir }}',
+      currency: '{{ store.currency }}',
+      whatsappNumber: '{{ settings.contact.whatsapp_number | default("") }}',
+      whatsappMessage: '{{ settings.contact.whatsapp_message | default("") | escape }}',
+      showWhatsapp: {{ components.engagement_settings.show_whatsapp | default(true) | json_encode }},
+      showBackToTop: {{ components.engagement_settings.show_back_to_top | default(true) | json_encode }},
+      newsletterPopupDelay: {{ components.engagement_settings.popup_delay | default(5) }},
+      showExitIntent: {{ components.engagement_settings.show_exit_intent | default(false) | json_encode }},
+      flashSaleEndDate: '{{ components.home_flash_sale.end_date | default("") }}',
+      i18n: {
+        addedToCart: '{{ "general.added_to_cart" | t }}',
+        outOfStock: '{{ "general.out_of_stock" | t }}',
+        error: '{{ "general.error" | t }}',
+        cartEmpty: '{{ "cart.empty" | t }}',
+        freeShippingMsg: '{{ "cart.free_shipping_msg" | t }}',
+        newsletterSuccess: '{{ "newsletter.success" | t }}',
+        newsletterError: '{{ "newsletter.error" | t }}',
+        copied: '{{ "general.copied" | t }}'
+      }
+    };
+  </script>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

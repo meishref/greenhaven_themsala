@@ -1,0 +1,86 @@
+{
+    "general": {
+        "currency": "ر.س",
+        "loading": "جارٍ التحميل...",
+        "error": "حدث خطأ، يرجى المحاولة مجددًا",
+        "close": "إغلاق",
+        "view_all": "عرض الكل",
+        "added_to_cart": "تمت الإضافة إلى السلة",
+        "added_to_wishlist": "تمت الإضافة إلى المفضلة",
+        "removed_from_wishlist": "تمت الإزالة من المفضلة",
+        "out_of_stock": "نفد المخزون",
+        "in_stock": "متوفر",
+        "sku": "رمز المنتج",
+        "share": "مشاركة",
+        "copied": "تم النسخ!"
+    },
+    "header": {
+        "search_placeholder": "ابحث عن نباتات، بذور، أدوات...",
+        "cart": "السلة",
+        "wishlist": "المفضلة",
+        "menu": "القائمة",
+        "account": "حسابي"
+    },
+    "hero": {
+        "scroll_down": "اسحب للأسفل"
+    },
+    "product": {
+        "add_to_cart": "أضف إلى السلة",
+        "buy_now": "اشتري الآن",
+        "quick_view": "معاينة سريعة",
+        "wishlist_add": "أضف للمفضلة",
+        "wishlist_remove": "إزالة من المفضلة",
+        "discount_badge": "خصم",
+        "new_badge": "جديد",
+        "bestseller_badge": "الأكثر مبيعًا",
+        "scarcity": "بقي {{count}} فقط!",
+        "free_shipping": "شحن مجاني",
+        "share_product": "شارك المنتج",
+        "description": "الوصف",
+        "reviews": "التقييمات",
+        "related_products": "منتجات ذات صلة",
+        "quantity": "الكمية",
+        "select_option": "اختر",
+        "options": "الخيارات"
+    },
+    "cart": {
+        "title": "سلة التسوق",
+        "empty": "سلتك فارغة",
+        "empty_subtitle": "ابدأ التسوق وأضف منتجات رائعة",
+        "subtotal": "المجموع الفرعي",
+        "total": "الإجمالي",
+        "checkout": "إتمام الشراء",
+        "continue_shopping": "مواصلة التسوق",
+        "remove": "حذف",
+        "quantity": "الكمية",
+        "free_shipping_msg": "أضف {{amount}} للحصول على شحن مجاني!",
+        "free_shipping_achieved": "🎉 حصلت على شحن مجاني!"
+    },
+    "newsletter": {
+        "email_placeholder": "أدخل بريدك الإلكتروني",
+        "subscribe": "اشترك",
+        "success": "شكرًا! تم تسجيلك بنجاح 🌿",
+        "error": "يرجى إدخال بريد إلكتروني صحيح"
+    },
+    "footer": {
+        "rights": "جميع الحقوق محفوظة",
+        "powered_by": "مدعوم بـ سلة"
+    },
+    "trust": {
+        "shipping": "شحن سريع",
+        "shipping_text": "توصيل لجميع مناطق المملكة",
+        "returns": "استرجاع مجاني",
+        "returns_text": "خلال 7 أيام",
+        "quality": "منتجات عضوية",
+        "quality_text": "معتمدة وعالية الجودة",
+        "support": "دعم 24/7",
+        "support_text": "نحن هنا لمساعدتك"
+    },
+    "accessibility": {
+        "skip_to_content": "تخطى إلى المحتوى",
+        "open_menu": "فتح القائمة",
+        "close_menu": "إغلاق القائمة",
+        "back_to_top": "العودة للأعلى",
+        "whatsapp": "تواصل عبر الواتساب"
+    }
+}

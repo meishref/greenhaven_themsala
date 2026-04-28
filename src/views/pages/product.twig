@@ -1,0 +1,218 @@
+{% extends 'layouts.master' %}
+
+{% block title %}{{ product.name }} | {{ store.name }}{% endblock %}
+{% block description %}{{ product.description | striptags | truncate(160) }}{% endblock %}
+{% block og_image %}{{ product.images[0].url }}{% endblock %}
+
+{% block body_class %}product-page-body{% endblock %}
+
+{% block content %}
+<div class="product-page">
+  <div class="container">
+    <div class="product-page__layout">
+
+      {# ── Gallery ── #}
+      <div class="product-gallery" id="product-gallery">
+        <div class="product-gallery__main" id="gallery-main">
+          <img src="{{ product.images[0].url | default(product.thumbnail) }}"
+               alt="{{ product.name }}"
+               class="product-gallery__main-img"
+               id="gallery-main-img"
+               fetchpriority="high"
+               width="600" height="600">
+          <div class="product-gallery__zoom-hint" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            تكبير
+          </div>
+        </div>
+        {% if product.images | length > 1 %}
+        <div class="product-gallery__thumbs" role="list" aria-label="Product images">
+          {% for image in product.images %}
+          <button class="product-gallery__thumb {% if loop.first %}is-active{% endif %}"
+                  data-src="{{ image.url }}"
+                  title="Image {{ loop.index }}"
+                  role="listitem">
+            <img src="{{ image.url }}" alt="{{ product.name }} - view {{ loop.index }}" loading="lazy" width="72" height="72">
+          </button>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      {# ── Product Info ── #}
+      <div class="product-info" id="product-info">
+        {# Breadcrumb #}
+        <nav class="product-info__breadcrumb" aria-label="Breadcrumb">
+          <a href="/">الرئيسية</a><span>›</span>
+          {% if product.category %}<a href="{{ product.category.url }}">{{ product.category.name }}</a><span>›</span>{% endif %}
+          <span aria-current="page">{{ product.name }}</span>
+        </nav>
+
+        {# Badges #}
+        <div class="product-info__badges">
+          {% if product.discount_percent > 0 %}<span class="badge badge--sale">خصم {{ product.discount_percent }}%</span>{% endif %}
+          {% if product.is_new %}<span class="badge badge--new">{{ 'product.new_badge' | t }}</span>{% endif %}
+          {% if product.is_best_seller %}<span class="badge badge--hot">{{ 'product.bestseller_badge' | t }}</span>{% endif %}
+        </div>
+
+        <h1 class="product-info__title">{{ product.name }}</h1>
+
+        {# Rating #}
+        {% if product.rating > 0 %}
+        <div class="product-info__rating">
+          <div class="stars" aria-label="{{ product.rating }} stars">
+            {% for s in 1..5 %}<svg class="{{ s <= product.rating ? '' : 'star--empty' }}" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{% endfor %}
+          </div>
+          {% if product.reviews_count %}<a href="#product-reviews" class="product-info__rating-count">({{ product.reviews_count }} تقييم)</a>{% endif %}
+        </div>
+        {% endif %}
+
+        {# Price #}
+        <div class="product-info__price-wrap">
+          <div class="product-info__price">
+            <span class="product-info__price-current">{{ product.price | money }}</span>
+            {% if product.compare_at_price > product.price %}
+            <span class="product-info__price-original">{{ product.compare_at_price | money }}</span>
+            <span class="product-info__price-saving">وفّر {{ (product.compare_at_price - product.price) | money }}</span>
+            {% endif %}
+          </div>
+        </div>
+
+        {# Scarcity #}
+        {% if product.quantity > 0 and product.quantity <= 10 %}
+        <div class="product-scarcity" role="alert">
+          <span class="product-scarcity__dot" aria-hidden="true"></span>
+          <p class="product-scarcity__text">{{ 'product.scarcity' | t | replace({'{{count}}': product.quantity}) }}</p>
+        </div>
+        {% endif %}
+
+        {# Options #}
+        {% if product.options | length > 0 %}
+        <div class="product-options" id="product-options">
+          {% for option in product.options %}
+          <div class="product-option">
+            <p class="product-option__label">
+              {{ option.name }}
+              <span id="option-{{ option.id }}-value"></span>
+            </p>
+            <div class="product-option__choices">
+              {% for value in option.values %}
+              <button class="product-option__choice {% if loop.first %}is-active{% endif %}"
+                      data-option="{{ option.id }}"
+                      data-value="{{ value.name }}"
+                      {% if not value.in_stock %}disabled class="product-option__choice is-disabled"{% endif %}>
+                {{ value.name }}
+              </button>
+              {% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {# Add to cart #}
+        <div class="product-add-section">
+          <div class="qty-stepper" role="group" aria-label="Quantity">
+            <button class="qty-stepper__btn" id="qty-decrease" aria-label="Decrease">−</button>
+            <input class="qty-stepper__value" type="number" id="product-qty" value="1" min="1" max="{{ product.quantity }}" aria-label="Quantity">
+            <button class="qty-stepper__btn" id="qty-increase" aria-label="Increase">+</button>
+          </div>
+          <button class="btn btn--primary"
+                  id="add-to-cart-btn"
+                  data-product="{{ product.id }}"
+                  {% if not product.in_stock %}disabled{% endif %}
+                  aria-label="{{ 'product.add_to_cart' | t }}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            {{ product.in_stock ? 'product.add_to_cart' | t : 'general.out_of_stock' | t }}
+          </button>
+        </div>
+
+        {% if product.in_stock %}
+        <a href="{{ routes.checkout }}?product={{ product.id }}&qty=1"
+           class="btn btn--outline btn--lg product-buy-now">
+          ⚡ {{ 'product.buy_now' | t }}
+        </a>
+        {% endif %}
+
+        {# Meta #}
+        <div class="product-meta">
+          {% if product.sku %}<div class="product-meta__row"><span class="product-meta__key">{{ 'general.sku' | t }}:</span> {{ product.sku }}</div>{% endif %}
+          {% if product.category %}<div class="product-meta__row"><span class="product-meta__key">القسم:</span> <a href="{{ product.category.url }}">{{ product.category.name }}</a></div>{% endif %}
+          <div class="product-meta__row">
+            <span class="product-meta__key">{{ 'general.share' | t }}:</span>
+            <button data-action="share" data-url="{{ product.url }}" data-title="{{ product.name }}"
+                    class="btn btn--ghost btn--sm">نسخ الرابط</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# Tabs: Description / Reviews #}
+    <div class="product-tabs">
+      <div class="product-tabs__nav" role="tablist">
+        <button class="product-tabs__btn is-active" role="tab" aria-selected="true" data-tab="description" id="tab-desc" aria-controls="panel-desc">{{ 'product.description' | t }}</button>
+        {% if product.reviews_count > 0 %}
+        <button class="product-tabs__btn" role="tab" aria-selected="false" data-tab="reviews" id="tab-reviews" aria-controls="panel-reviews">{{ 'product.reviews' | t }} ({{ product.reviews_count }})</button>
+        {% endif %}
+      </div>
+      <div class="product-tabs__panel is-active product-description" id="panel-desc" role="tabpanel" aria-labelledby="tab-desc">
+        {{ product.description | raw }}
+      </div>
+      {% if product.reviews_count > 0 %}
+      <div class="product-tabs__panel" id="panel-reviews" role="tabpanel" aria-labelledby="tab-reviews">
+        {% for review in product.reviews %}
+        <article style="padding-block: var(--space-5); border-block-end: 1px solid var(--color-border-light);">
+          <div style="display:flex; align-items:center; gap: var(--space-3); margin-block-end: var(--space-3);">
+            <div class="stars">{% for s in 1..5 %}<svg class="{{ s <= review.rating ? '' : 'star--empty' }}" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{% endfor %}</div>
+            <strong>{{ review.author }}</strong>
+            <span style="color:var(--color-text-muted);font-size:var(--text-sm);">{{ review.created_at | date('d/m/Y') }}</span>
+          </div>
+          <p style="color: var(--color-text-muted);">{{ review.content }}</p>
+        </article>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  {# Related Products #}
+  {% if related_products | length > 0 %}
+  <div class="related-products">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-header__title">{{ 'product.related_products' | t }}</h2>
+      </div>
+      <div class="products-grid">
+        {% for rp in related_products | slice(0,4) %}
+          {% include 'components/product/product-card' with { product: rp } %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+{# Sticky mobile ATC #}
+<div class="product-sticky-atc" id="sticky-atc" aria-label="Sticky add to cart">
+  <div class="product-sticky-atc__name">{{ product.name }}</div>
+  <span class="product-sticky-atc__price">{{ product.price | money }}</span>
+  <button class="btn btn--primary btn--sm"
+          data-action="add-to-cart"
+          data-product="{{ product.id }}"
+          {% if not product.in_stock %}disabled{% endif %}>
+    {{ 'product.add_to_cart' | t }}
+  </button>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  window.currentProduct = {
+    id: {{ product.id }},
+    name: "{{ product.name | escape('js') }}",
+    price: {{ product.price }},
+    thumbnail: "{{ product.thumbnail }}",
+    url: "{{ product.url }}"
+  };
+</script>
+{% endblock %}

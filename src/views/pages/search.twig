@@ -1,0 +1,28 @@
+{% extends 'layouts.master' %}
+{% block title %}نتائج البحث: {{ query }} | {{ store.name }}{% endblock %}
+{% block content %}
+<div class="catalog-page">
+  <div class="container">
+    <div style="margin-block-end: var(--space-8);">
+      <h1 style="font-size: var(--text-3xl); font-weight: var(--weight-bold);">
+        {% if products | length > 0 %}نتائج البحث عن "{{ query }}"{% else %}لا توجد نتائج{% endif %}
+      </h1>
+      <p style="color: var(--color-text-muted); margin-block-start: var(--space-2);">
+        {% if products | length > 0 %}وجدنا {{ products | length }} منتج{% else %}جرّب كلمات بحث مختلفة{% endif %}
+      </p>
+    </div>
+    <div class="products-grid" role="list">
+      {% for product in products %}
+        {% include 'components/product/product-card' with { product: product } %}
+      {% else %}
+      <div style="grid-column:1/-1;text-align:center;padding-block:var(--space-20);">
+        <div style="font-size:4rem;margin-block-end:var(--space-4);">🔍</div>
+        <h2>لا توجد منتجات</h2>
+        <p style="color:var(--color-text-muted);">جرّب البحث بمصطلحات مختلفة</p>
+        <a href="/shop" class="btn btn--primary" style="margin-block-start:var(--space-6);">تصفح جميع المنتجات</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
