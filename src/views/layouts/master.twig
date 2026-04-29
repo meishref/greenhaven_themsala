@@ -80,10 +80,10 @@
   {% endif %}
 
   {# Header #}
-  {% include 'components/header/header' %}
+  {% include 'components/header/header.twig' %}
 
   {# Cart Drawer #}
-  {% include 'components/cart/cart-drawer' %}
+  {% include 'components/cart/cart-drawer.twig' %}
 
   {# Mobile Menu #}
   <nav class="mobile-menu" id="mobile-menu" aria-label="{{ 'header.menu' | t }}" aria-hidden="true">
@@ -128,14 +128,14 @@
   </main>
 
   {# Footer #}
-  {% include 'components/footer/footer' %}
+  {% include 'components/footer/footer.twig' %}
 
   {# Engagement Widgets #}
-  {% include 'components/home/engagement' %}
+  {% include 'components/home/engagement.twig' %}
 
   {# Quick View Modal #}
   <dialog class="quick-view" id="quick-view-modal" aria-modal="true" aria-label="Quick View">
-    {% include 'components/product/quick-view' %}
+    {% include 'components/product/quick-view.twig' %}
   </dialog>
 
   {# Newsletter Popup #}
