@@ -167,7 +167,7 @@
   ],
   "components": [
     {
-      "name": "home_hero",
+      "key": "home_hero",
       "title": "قسم الهيرو",
       "icon": "sicon-image",
       "path": "home.hero",
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "name": "home_categories",
+      "key": "home_categories",
       "title": "الأقسام",
       "icon": "sicon-grid",
       "path": "home.categories",
@@ -305,7 +305,7 @@
       ]
     },
     {
-      "name": "home_featured",
+      "key": "home_featured",
       "title": "المنتجات المميزة",
       "icon": "sicon-star",
       "path": "home.featured-products",
@@ -345,7 +345,7 @@
       ]
     },
     {
-      "name": "home_flash_sale",
+      "key": "home_flash_sale",
       "title": "تخفيضات محدودة",
       "icon": "sicon-lightning",
       "path": "home.flash-sale",
@@ -398,7 +398,7 @@
       ]
     },
     {
-      "name": "home_brands",
+      "key": "home_brands",
       "title": "العلامات التجارية",
       "icon": "sicon-tag",
       "path": "home.brands",
@@ -442,7 +442,7 @@
       ]
     },
     {
-      "name": "home_testimonials",
+      "key": "home_testimonials",
       "title": "آراء العملاء",
       "icon": "sicon-chat",
       "path": "home.testimonials",
@@ -506,7 +506,7 @@
       ]
     },
     {
-      "name": "home_trust_badges",
+      "key": "home_trust_badges",
       "title": "شارات الثقة",
       "icon": "sicon-shield",
       "path": "home.trust-badges",
@@ -543,7 +543,7 @@
       ]
     },
     {
-      "name": "home_newsletter",
+      "key": "home_newsletter",
       "title": "النشرة البريدية",
       "icon": "sicon-email",
       "path": "home.newsletter",
@@ -594,7 +594,7 @@
       ]
     },
     {
-      "name": "home_recently_viewed",
+      "key": "home_recently_viewed",
       "title": "المشاهدة مؤخرًا",
       "icon": "sicon-clock",
       "path": "home.recently-viewed",
@@ -614,7 +614,7 @@
       ]
     },
     {
-      "name": "engagement_settings",
+      "key": "engagement_settings",
       "title": "إعدادات التفاعل",
       "icon": "sicon-bell",
       "path": "home.engagement",

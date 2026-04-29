@@ -3,50 +3,6 @@
 {% block title %}{{ store.name }} — {{ components.home_hero.heading | default('متجر النباتات والزهور') }}{% endblock %}
 
 {% block content %}
-
-{# Hero Section #}
-{% if components.home_hero.enabled != false %}
-  {% include 'components/home/hero' %}
-{% endif %}
-
-{# Categories Section #}
-{% if components.home_categories.enabled != false %}
-  {% include 'components/home/categories' %}
-{% endif %}
-
-{# Featured Products Section #}
-{% if components.home_featured.enabled != false %}
-  {% include 'components/home/featured-products' %}
-{% endif %}
-
-{# Trust Badges Section #}
-{% if components.home_trust_badges.enabled != false %}
-  {% include 'components/home/trust-badges' %}
-{% endif %}
-
-{# Flash Sale Section #}
-{% if components.home_flash_sale.enabled %}
-  {% include 'components/home/flash-sale' %}
-{% endif %}
-
-{# Brands Section #}
-{% if components.home_brands.enabled %}
-  {% include 'components/home/brands' %}
-{% endif %}
-
-{# Testimonials Section #}
-{% if components.home_testimonials.enabled %}
-  {% include 'components/home/testimonials' %}
-{% endif %}
-
-{# Newsletter Section #}
-{% if components.home_newsletter.enabled %}
-  {% include 'components/home/newsletter' %}
-{% endif %}
-
-{# Recently Viewed Section #}
-{% if components.home_recently_viewed.enabled != false %}
-  {% include 'components/home/recently-viewed' %}
-{% endif %}
-
+    {# Render Dynamic Homepage Sections from Salla Dashboard #}
+    {% component 'home' %}
 {% endblock %}
