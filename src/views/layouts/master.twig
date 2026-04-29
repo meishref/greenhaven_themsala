@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ store.lang }}" dir="{{ store.dir }}" class="no-js">
 <head>
+  {{ head_assets|raw }}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -205,5 +206,6 @@
   </script>
 
   {% block scripts %}{% endblock %}
+  {{ footer_assets|raw }}
 </body>
 </html>
