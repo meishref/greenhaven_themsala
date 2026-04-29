@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Salla Theme",
   "scripts": {
+    "development": "echo dev",
     "build": "echo build"
   },
   "dependencies": {
