@@ -3,54 +3,46 @@
     "ar": "جرين هيفن برو",
     "en": "Green Haven Pro"
   },
-  "version": "1.0.0",
-  "author": "Green Haven",
+  "repository": "https://github.com/roony/greenhaven",
+  "author_email": "hello@greenhaven.com",
+  "support_url": "https://greenhaven.com",
+  "features": [
+    "mega-menu",
+    "fonts",
+    "color",
+    "breadcrumb"
+  ],
   "settings": [
     {
       "id": "colors",
-      "title": {
-        "ar": "الألوان",
-        "en": "Colors"
-      },
+      "title": "الألوان",
       "icon": "sicon-palette",
       "fields": [
         {
           "id": "color_primary",
           "type": "string",
-          "label": {
-            "ar": "اللون الأساسي",
-            "en": "Primary Color"
-          },
+          "label": "اللون الأساسي",
           "default": "#1a5c32",
           "format": "color"
         },
         {
           "id": "color_secondary",
           "type": "string",
-          "label": {
-            "ar": "اللون الثانوي",
-            "en": "Secondary Color"
-          },
+          "label": "اللون الثانوي",
           "default": "#2ecc71",
           "format": "color"
         },
         {
           "id": "color_accent",
           "type": "string",
-          "label": {
-            "ar": "لون التمييز",
-            "en": "Accent Color"
-          },
+          "label": "لون التمييز",
           "default": "#d4a843",
           "format": "color"
         },
         {
           "id": "color_bg",
           "type": "string",
-          "label": {
-            "ar": "لون الخلفية",
-            "en": "Background Color"
-          },
+          "label": "لون الخلفية",
           "default": "#faf9f5",
           "format": "color"
         }
@@ -58,19 +50,13 @@
     },
     {
       "id": "typography",
-      "title": {
-        "ar": "الخطوط",
-        "en": "Typography"
-      },
+      "title": "الخطوط",
       "icon": "sicon-text",
       "fields": [
         {
           "id": "font_arabic",
           "type": "items",
-          "label": {
-            "ar": "خط عربي",
-            "en": "Arabic Font"
-          },
+          "label": "خط عربي",
           "default": "Cairo",
           "options": [
             {
@@ -90,10 +76,7 @@
         {
           "id": "font_english",
           "type": "items",
-          "label": {
-            "ar": "خط إنجليزي",
-            "en": "English Font"
-          },
+          "label": "خط إنجليزي",
           "default": "Poppins",
           "options": [
             {
@@ -114,102 +97,69 @@
     },
     {
       "id": "contact",
-      "title": {
-        "ar": "التواصل الاجتماعي",
-        "en": "Contact & Social"
-      },
+      "title": "التواصل الاجتماعي",
       "icon": "sicon-phone",
       "fields": [
         {
           "id": "whatsapp_number",
           "type": "string",
-          "label": {
-            "ar": "رقم الواتساب",
-            "en": "WhatsApp Number"
-          },
+          "label": "رقم الواتساب",
           "default": "966500000000",
           "placeholder": "966XXXXXXXXX"
         },
         {
           "id": "whatsapp_message",
           "type": "string",
-          "label": {
-            "ar": "رسالة الواتساب",
-            "en": "WhatsApp Message"
-          },
+          "label": "رسالة الواتساب",
           "default": "مرحبًا، أريد الاستفسار عن"
         },
         {
           "id": "instagram_url",
           "type": "string",
-          "label": {
-            "ar": "رابط إنستغرام",
-            "en": "Instagram URL"
-          },
+          "label": "رابط إنستغرام",
           "default": ""
         },
         {
           "id": "twitter_url",
           "type": "string",
-          "label": {
-            "ar": "رابط تويتر",
-            "en": "Twitter URL"
-          },
+          "label": "رابط تويتر",
           "default": ""
         },
         {
           "id": "snapchat_url",
           "type": "string",
-          "label": {
-            "ar": "رابط سناب شات",
-            "en": "Snapchat URL"
-          },
+          "label": "رابط سناب شات",
           "default": ""
         }
       ]
     },
     {
       "id": "header_settings",
-      "title": {
-        "ar": "إعدادات الهيدر",
-        "en": "Header Settings"
-      },
+      "title": "إعدادات الهيدر",
       "icon": "sicon-layout",
       "fields": [
         {
           "id": "show_search",
           "type": "boolean",
-          "label": {
-            "ar": "إظهار شريط البحث",
-            "en": "Show Search Bar"
-          },
+          "label": "إظهار شريط البحث",
           "default": true
         },
         {
           "id": "show_wishlist",
           "type": "boolean",
-          "label": {
-            "ar": "إظهار قائمة الأمنيات",
-            "en": "Show Wishlist"
-          },
+          "label": "إظهار قائمة الأمنيات",
           "default": true
         },
         {
           "id": "announcement_bar_enabled",
           "type": "boolean",
-          "label": {
-            "ar": "شريط الإعلانات",
-            "en": "Announcement Bar"
-          },
+          "label": "شريط الإعلانات",
           "default": true
         },
         {
           "id": "announcement_text",
           "type": "string",
-          "label": {
-            "ar": "نص شريط الإعلانات",
-            "en": "Announcement Text"
-          },
+          "label": "نص شريط الإعلانات",
           "default": "شحن مجاني للطلبات فوق 200 ريال 🌿"
         }
       ]
@@ -218,48 +168,33 @@
   "components": [
     {
       "name": "home_hero",
-      "title": {
-        "ar": "قسم الهيرو",
-        "en": "Hero Section"
-      },
+      "title": "قسم الهيرو",
       "icon": "sicon-image",
       "path": "home.hero",
       "fields": [
         {
           "id": "enabled",
           "type": "boolean",
-          "label": {
-            "ar": "تفعيل القسم",
-            "en": "Enable Section"
-          },
+          "label": "تفعيل القسم",
           "default": true
         },
         {
           "id": "hero_image",
           "type": "string",
-          "label": {
-            "ar": "صورة الخلفية",
-            "en": "Background Image"
-          },
+          "label": "صورة الخلفية",
           "default": "",
           "format": "image"
         },
         {
           "id": "show_overlay",
           "type": "boolean",
-          "label": {
-            "ar": "إظهار التدرج اللوني",
-            "en": "Show Gradient Overlay"
-          },
+          "label": "إظهار التدرج اللوني",
           "default": true
         },
         {
           "id": "overlay_opacity",
           "type": "number",
-          "label": {
-            "ar": "شفافية التدرج (0-100)",
-            "en": "Overlay Opacity (0-100)"
-          },
+          "label": "شفافية التدرج (0-100)",
           "default": 50,
           "min": 0,
           "max": 100
@@ -267,153 +202,102 @@
         {
           "id": "badge_text",
           "type": "string",
-          "label": {
-            "ar": "نص الشارة",
-            "en": "Badge Text"
-          },
+          "label": "نص الشارة",
           "default": "🌿 الطبيعة في متناول يدك"
         },
         {
           "id": "heading",
           "type": "string",
-          "label": {
-            "ar": "العنوان الرئيسي",
-            "en": "Main Heading"
-          },
+          "label": "العنوان الرئيسي",
           "default": "ابدأ رحلتك مع الطبيعة"
         },
         {
           "id": "subheading",
           "type": "string",
-          "label": {
-            "ar": "العنوان الفرعي",
-            "en": "Subheading"
-          },
+          "label": "العنوان الفرعي",
           "default": "أجمل النباتات والزهور تُضفي الحياة على مكانك"
         },
         {
           "id": "cta_primary_text",
           "type": "string",
-          "label": {
-            "ar": "نص الزر الأول",
-            "en": "Primary Button Text"
-          },
+          "label": "نص الزر الأول",
           "default": "تسوق الآن"
         },
         {
           "id": "cta_primary_url",
           "type": "string",
-          "label": {
-            "ar": "رابط الزر الأول",
-            "en": "Primary Button URL"
-          },
+          "label": "رابط الزر الأول",
           "default": "/shop"
         },
         {
           "id": "cta_secondary_text",
           "type": "string",
-          "label": {
-            "ar": "نص الزر الثاني",
-            "en": "Secondary Button Text"
-          },
+          "label": "نص الزر الثاني",
           "default": "اكتشف المجموعات"
         },
         {
           "id": "cta_secondary_url",
           "type": "string",
-          "label": {
-            "ar": "رابط الزر الثاني",
-            "en": "Secondary Button URL"
-          },
+          "label": "رابط الزر الثاني",
           "default": "/categories"
         },
         {
           "id": "show_floating_leaves",
           "type": "boolean",
-          "label": {
-            "ar": "أوراق شجر متحركة",
-            "en": "Show Floating Leaves"
-          },
+          "label": "أوراق شجر متحركة",
           "default": true
         }
       ]
     },
     {
       "name": "home_categories",
-      "title": {
-        "ar": "الأقسام",
-        "en": "Categories"
-      },
+      "title": "الأقسام",
       "icon": "sicon-grid",
       "path": "home.categories",
       "fields": [
         {
           "id": "enabled",
           "type": "boolean",
-          "label": {
-            "ar": "تفعيل القسم",
-            "en": "Enable Section"
-          },
+          "label": "تفعيل القسم",
           "default": true
         },
         {
           "id": "title",
           "type": "string",
-          "label": {
-            "ar": "عنوان القسم",
-            "en": "Section Title"
-          },
+          "label": "عنوان القسم",
           "default": "تصفح الأقسام"
         },
         {
           "id": "subtitle",
           "type": "string",
-          "label": {
-            "ar": "العنوان الفرعي",
-            "en": "Subtitle"
-          },
+          "label": "العنوان الفرعي",
           "default": "اختر من تشكيلتنا الواسعة من النباتات والزهور"
         },
         {
           "id": "categories",
           "type": "collection",
-          "label": {
-            "ar": "الأقسام",
-            "en": "Categories"
-          },
+          "label": "الأقسام",
           "fields": [
             {
               "id": "image",
               "type": "string",
-              "label": {
-                "ar": "صورة القسم",
-                "en": "Category Image"
-              },
+              "label": "صورة القسم",
               "format": "image"
             },
             {
               "id": "name",
               "type": "string",
-              "label": {
-                "ar": "اسم القسم",
-                "en": "Category Name"
-              }
+              "label": "اسم القسم"
             },
             {
               "id": "url",
               "type": "string",
-              "label": {
-                "ar": "رابط القسم",
-                "en": "Category URL"
-              }
+              "label": "رابط القسم"
             },
             {
               "id": "badge",
               "type": "string",
-              "label": {
-                "ar": "الشارة (اختياري)",
-                "en": "Badge (optional)"
-              },
+              "label": "الشارة (اختياري)",
               "default": ""
             }
           ]
@@ -422,47 +306,32 @@
     },
     {
       "name": "home_featured",
-      "title": {
-        "ar": "المنتجات المميزة",
-        "en": "Featured Products"
-      },
+      "title": "المنتجات المميزة",
       "icon": "sicon-star",
       "path": "home.featured-products",
       "fields": [
         {
           "id": "enabled",
           "type": "boolean",
-          "label": {
-            "ar": "تفعيل القسم",
-            "en": "Enable Section"
-          },
+          "label": "تفعيل القسم",
           "default": true
         },
         {
           "id": "title",
           "type": "string",
-          "label": {
-            "ar": "عنوان القسم",
-            "en": "Section Title"
-          },
+          "label": "عنوان القسم",
           "default": "منتجاتنا المميزة"
         },
         {
           "id": "subtitle",
           "type": "string",
-          "label": {
-            "ar": "العنوان الفرعي",
-            "en": "Subtitle"
-          },
+          "label": "العنوان الفرعي",
           "default": "اختيارات مميزة بجودة عالية"
         },
         {
           "id": "products_count",
           "type": "number",
-          "label": {
-            "ar": "عدد المنتجات",
-            "en": "Products Count"
-          },
+          "label": "عدد المنتجات",
           "default": 8,
           "min": 4,
           "max": 16
@@ -470,85 +339,58 @@
         {
           "id": "view_all_text",
           "type": "string",
-          "label": {
-            "ar": "نص زر عرض الكل",
-            "en": "View All Button Text"
-          },
+          "label": "نص زر عرض الكل",
           "default": "عرض جميع المنتجات"
         }
       ]
     },
     {
       "name": "home_flash_sale",
-      "title": {
-        "ar": "تخفيضات محدودة",
-        "en": "Flash Sale"
-      },
+      "title": "تخفيضات محدودة",
       "icon": "sicon-lightning",
       "path": "home.flash-sale",
       "fields": [
         {
           "id": "enabled",
           "type": "boolean",
-          "label": {
-            "ar": "تفعيل قسم التخفيضات",
-            "en": "Enable Flash Sale"
-          },
+          "label": "تفعيل قسم التخفيضات",
           "default": true
         },
         {
           "id": "title",
           "type": "string",
-          "label": {
-            "ar": "عنوان التخفيضات",
-            "en": "Sale Title"
-          },
+          "label": "عنوان التخفيضات",
           "default": "تخفيضات محدودة الوقت ⚡"
         },
         {
           "id": "subtitle",
           "type": "string",
-          "label": {
-            "ar": "العنوان الفرعي",
-            "en": "Subtitle"
-          },
+          "label": "العنوان الفرعي",
           "default": "لا تفوّت الفرصة!"
         },
         {
           "id": "end_date",
           "type": "string",
-          "label": {
-            "ar": "تاريخ انتهاء العرض (YYYY-MM-DD HH:MM)",
-            "en": "Sale End Date (YYYY-MM-DD HH:MM)"
-          },
+          "label": "تاريخ انتهاء العرض (YYYY-MM-DD HH:MM)",
           "default": "2026-06-01 00:00"
         },
         {
           "id": "badge_text",
           "type": "string",
-          "label": {
-            "ar": "نص الشارة",
-            "en": "Badge Text"
-          },
+          "label": "نص الشارة",
           "default": "تخفيض"
         },
         {
           "id": "bg_image",
           "type": "string",
-          "label": {
-            "ar": "صورة الخلفية",
-            "en": "Background Image"
-          },
+          "label": "صورة الخلفية",
           "default": "",
           "format": "image"
         },
         {
           "id": "products_count",
           "type": "number",
-          "label": {
-            "ar": "عدد المنتجات",
-            "en": "Products Count"
-          },
+          "label": "عدد المنتجات",
           "default": 4,
           "min": 2,
           "max": 8
@@ -557,63 +399,42 @@
     },
     {
       "name": "home_brands",
-      "title": {
-        "ar": "العلامات التجارية",
-        "en": "Brands"
-      },
+      "title": "العلامات التجارية",
       "icon": "sicon-tag",
       "path": "home.brands",
       "fields": [
         {
           "id": "enabled",
           "type": "boolean",
-          "label": {
-            "ar": "تفعيل القسم",
-            "en": "Enable Section"
-          },
+          "label": "تفعيل القسم",
           "default": true
         },
         {
           "id": "title",
           "type": "string",
-          "label": {
-            "ar": "عنوان القسم",
-            "en": "Section Title"
-          },
+          "label": "عنوان القسم",
           "default": "شركاؤنا"
         },
         {
           "id": "brands",
           "type": "collection",
-          "label": {
-            "ar": "العلامات التجارية",
-            "en": "Brands"
-          },
+          "label": "العلامات التجارية",
           "fields": [
             {
               "id": "logo",
               "type": "string",
-              "label": {
-                "ar": "شعار العلامة",
-                "en": "Brand Logo"
-              },
+              "label": "شعار العلامة",
               "format": "image"
             },
             {
               "id": "name",
               "type": "string",
-              "label": {
-                "ar": "اسم العلامة",
-                "en": "Brand Name"
-              }
+              "label": "اسم العلامة"
             },
             {
               "id": "url",
               "type": "string",
-              "label": {
-                "ar": "رابط العلامة",
-                "en": "Brand URL"
-              },
+              "label": "رابط العلامة",
               "default": "#"
             }
           ]
@@ -622,73 +443,49 @@
     },
     {
       "name": "home_testimonials",
-      "title": {
-        "ar": "آراء العملاء",
-        "en": "Testimonials"
-      },
+      "title": "آراء العملاء",
       "icon": "sicon-chat",
       "path": "home.testimonials",
       "fields": [
         {
           "id": "enabled",
           "type": "boolean",
-          "label": {
-            "ar": "تفعيل قسم الآراء",
-            "en": "Enable Testimonials"
-          },
+          "label": "تفعيل قسم الآراء",
           "default": true
         },
         {
           "id": "title",
           "type": "string",
-          "label": {
-            "ar": "عنوان القسم",
-            "en": "Section Title"
-          },
+          "label": "عنوان القسم",
           "default": "ماذا يقول عملاؤنا"
         },
         {
           "id": "subtitle",
           "type": "string",
-          "label": {
-            "ar": "العنوان الفرعي",
-            "en": "Subtitle"
-          },
+          "label": "العنوان الفرعي",
           "default": "آراء حقيقية من عملاء سعداء"
         },
         {
           "id": "reviews",
           "type": "collection",
-          "label": {
-            "ar": "التقييمات",
-            "en": "Reviews"
-          },
+          "label": "التقييمات",
           "fields": [
             {
               "id": "name",
               "type": "string",
-              "label": {
-                "ar": "اسم العميل",
-                "en": "Customer Name"
-              }
+              "label": "اسم العميل"
             },
             {
               "id": "avatar",
               "type": "string",
-              "label": {
-                "ar": "صورة العميل",
-                "en": "Customer Avatar"
-              },
+              "label": "صورة العميل",
               "default": "",
               "format": "image"
             },
             {
               "id": "rating",
               "type": "number",
-              "label": {
-                "ar": "التقييم (1-5)",
-                "en": "Rating (1-5)"
-              },
+              "label": "التقييم (1-5)",
               "default": 5,
               "min": 1,
               "max": 5
@@ -696,18 +493,12 @@
             {
               "id": "text",
               "type": "string",
-              "label": {
-                "ar": "نص التقييم",
-                "en": "Review Text"
-              }
+              "label": "نص التقييم"
             },
             {
               "id": "date",
               "type": "string",
-              "label": {
-                "ar": "التاريخ",
-                "en": "Date"
-              },
+              "label": "التاريخ",
               "default": ""
             }
           ]
@@ -716,54 +507,36 @@
     },
     {
       "name": "home_trust_badges",
-      "title": {
-        "ar": "شارات الثقة",
-        "en": "Trust Badges"
-      },
+      "title": "شارات الثقة",
       "icon": "sicon-shield",
       "path": "home.trust-badges",
       "fields": [
         {
           "id": "enabled",
           "type": "boolean",
-          "label": {
-            "ar": "تفعيل القسم",
-            "en": "Enable Section"
-          },
+          "label": "تفعيل القسم",
           "default": true
         },
         {
           "id": "badges",
           "type": "collection",
-          "label": {
-            "ar": "الشارات",
-            "en": "Badges"
-          },
+          "label": "الشارات",
           "fields": [
             {
               "id": "icon",
               "type": "string",
-              "label": {
-                "ar": "أيقونة (emoji أو CSS class)",
-                "en": "Icon (emoji or CSS class)"
-              },
+              "label": "أيقونة (emoji أو CSS class)",
               "default": "🌿"
             },
             {
               "id": "title",
               "type": "string",
-              "label": {
-                "ar": "العنوان",
-                "en": "Title"
-              }
+              "label": "العنوان"
             },
             {
               "id": "text",
               "type": "string",
-              "label": {
-                "ar": "النص",
-                "en": "Text"
-              }
+              "label": "النص"
             }
           ]
         }
@@ -771,151 +544,103 @@
     },
     {
       "name": "home_newsletter",
-      "title": {
-        "ar": "النشرة البريدية",
-        "en": "Newsletter"
-      },
+      "title": "النشرة البريدية",
       "icon": "sicon-email",
       "path": "home.newsletter",
       "fields": [
         {
           "id": "enabled",
           "type": "boolean",
-          "label": {
-            "ar": "تفعيل النشرة البريدية",
-            "en": "Enable Newsletter"
-          },
+          "label": "تفعيل النشرة البريدية",
           "default": true
         },
         {
           "id": "bg_image",
           "type": "string",
-          "label": {
-            "ar": "صورة الخلفية",
-            "en": "Background Image"
-          },
+          "label": "صورة الخلفية",
           "default": "",
           "format": "image"
         },
         {
           "id": "title",
           "type": "string",
-          "label": {
-            "ar": "العنوان",
-            "en": "Title"
-          },
+          "label": "العنوان",
           "default": "انضم لعائلة Green Haven"
         },
         {
           "id": "subtitle",
           "type": "string",
-          "label": {
-            "ar": "النص الفرعي",
-            "en": "Subtitle"
-          },
+          "label": "النص الفرعي",
           "default": "اشترك واحصل على عروض حصرية ونصائح للعناية بالنباتات"
         },
         {
           "id": "button_text",
           "type": "string",
-          "label": {
-            "ar": "نص الزر",
-            "en": "Button Text"
-          },
+          "label": "نص الزر",
           "default": "اشترك الآن"
         },
         {
           "id": "placeholder_text",
           "type": "string",
-          "label": {
-            "ar": "نص حقل البريد",
-            "en": "Email Placeholder"
-          },
+          "label": "نص حقل البريد",
           "default": "أدخل بريدك الإلكتروني"
         },
         {
           "id": "success_message",
           "type": "string",
-          "label": {
-            "ar": "رسالة النجاح",
-            "en": "Success Message"
-          },
+          "label": "رسالة النجاح",
           "default": "شكرًا! تم تسجيلك بنجاح 🌿"
         }
       ]
     },
     {
       "name": "home_recently_viewed",
-      "title": {
-        "ar": "المشاهدة مؤخرًا",
-        "en": "Recently Viewed"
-      },
+      "title": "المشاهدة مؤخرًا",
       "icon": "sicon-clock",
       "path": "home.recently-viewed",
       "fields": [
         {
           "id": "enabled",
           "type": "boolean",
-          "label": {
-            "ar": "تفعيل القسم",
-            "en": "Enable Section"
-          },
+          "label": "تفعيل القسم",
           "default": true
         },
         {
           "id": "title",
           "type": "string",
-          "label": {
-            "ar": "عنوان القسم",
-            "en": "Section Title"
-          },
+          "label": "عنوان القسم",
           "default": "شاهدتها مؤخرًا"
         }
       ]
     },
     {
       "name": "engagement_settings",
-      "title": {
-        "ar": "إعدادات التفاعل",
-        "en": "Engagement Settings"
-      },
+      "title": "إعدادات التفاعل",
       "icon": "sicon-bell",
       "path": "home.engagement",
       "fields": [
         {
           "id": "show_whatsapp",
           "type": "boolean",
-          "label": {
-            "ar": "زر الواتساب العائم",
-            "en": "Floating WhatsApp Button"
-          },
+          "label": "زر الواتساب العائم",
           "default": true
         },
         {
           "id": "show_back_to_top",
           "type": "boolean",
-          "label": {
-            "ar": "زر العودة للأعلى",
-            "en": "Back to Top Button"
-          },
+          "label": "زر العودة للأعلى",
           "default": true
         },
         {
           "id": "show_newsletter_popup",
           "type": "boolean",
-          "label": {
-            "ar": "نافذة النشرة المنبثقة",
-            "en": "Newsletter Popup"
-          },
+          "label": "نافذة النشرة المنبثقة",
           "default": true
         },
         {
           "id": "popup_delay",
           "type": "number",
-          "label": {
-            "ar": "تأخير النافذة المنبثقة (ثانية)",
-            "en": "Popup Delay (seconds)"
-          },
+          "label": "تأخير النافذة المنبثقة (ثانية)",
           "default": 5,
           "min": 2,
           "max": 30
@@ -923,28 +648,19 @@
         {
           "id": "show_exit_intent",
           "type": "boolean",
-          "label": {
-            "ar": "نافذة نية المغادرة",
-            "en": "Exit Intent Popup"
-          },
+          "label": "نافذة نية المغادرة",
           "default": false
         },
         {
           "id": "exit_intent_title",
           "type": "string",
-          "label": {
-            "ar": "عنوان نافذة المغادرة",
-            "en": "Exit Intent Title"
-          },
+          "label": "عنوان نافذة المغادرة",
           "default": "انتظر! لديك خصم خاص 🎁"
         },
         {
           "id": "exit_intent_text",
           "type": "string",
-          "label": {
-            "ar": "نص نافذة المغادرة",
-            "en": "Exit Intent Text"
-          },
+          "label": "نص نافذة المغادرة",
           "default": "احصل على خصم 10% على طلبك الأول"
         }
       ]
