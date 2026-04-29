@@ -1,0 +1,11 @@
+{
+  "name": "green-haven-theme",
+  "version": "1.0.0",
+  "description": "Salla Theme",
+  "scripts": {
+    "build": "echo build"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
